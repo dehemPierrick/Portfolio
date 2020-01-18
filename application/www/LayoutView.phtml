@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name='description' content='Portfolio DEHEM PIERRICK Developpeur - Integrateur WEB'>
+    <meta name='Keywords' content='portfolio,dehem,pierrick,developpeur web,integrateur web,html,css,javascript,jquery,php,mysql'>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"  >
+    <title>DEHEM Pierrick - Développeur Intégrateur Web - </title>
+
+     <!-- Librairie Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
+
+    <!-- Feuilles de styles de l'application -->
+    <link rel="stylesheet" href="<?= $wwwUrl ?>/css/normalize.css">
+    
+    <link rel="stylesheet" href="<?= $wwwUrl ?>/css/ui-table.css">
+<link rel="stylesheet" href="<?= $wwwUrl ?>/css/ui-form.css">
+    <link rel="stylesheet" href="<?= $wwwUrl ?>/css/styles.css">
+    <link rel="stylesheet" href="<?= $wwwUrl ?>/css/responsives.css">
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <!-- Librairie jQuery -->
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
+
+</head>
+<body>
+    <!-- en tête -->
+    <header>
+        <nav>
+            <a href="/"><img src="<?= $wwwUrl ?>/images/logo.png"/></a>
+            <a href="/"><i class="fas fa-home"></i> Accueil</a>
+            <a href="<?= $requestUrl ?>/competences"><i class="fas fa-chart-bar"></i> Compétences</a>
+            <a href="<?= $requestUrl ?>/experiences"><i class="fas fa-chart-bar"></i> Expériences</a>
+            <a href="<?= $requestUrl ?>/education"><i class="fas fa-school"></i> Education</a>
+            <a href="<?= $requestUrl ?>/portfolio"><i class="fas fa-project-diagram"></i> Portfolio</a>
+            <a href="<?= $requestUrl ?>/contact"><i class="fas fa-envelope"></i> Contact</a>
+        </nav>
+    </header>
+
+    <?php if ($flashbag->hasMessages()): ?>
+    <aside class="notice">
+        <?php foreach ($flashbag->fetchMessages() as $message): ?>
+            <p><?= $message ?></p>
+        <?php endforeach ?>
+    </aside>
+<?php endif ?>
+    <main class="site-content">
+        <!-- Affichage du template lié à la vue -->
+        <?php include $this->viewData['template'] ?>
+    </main>
+    <!-- Pied de page commun -->
+    <footer>
+       <small id="licence">
+            <a class="logo" href="<?= $requestUrl ?>"><img alt="Propriété de DEHEM Pierrick" src="<?= $wwwUrl ?>/images/logo.png" /></a>
+            <p>Copyright © 2018 - <?php echo date("Y"); ?></p>
+       </small>
+    </footer>
+    <!-- Code principal JavaScript de l'application -->
+    <script src="<?= $wwwUrl ?>/js/main.js"></script>
+
+</body>
+</html>

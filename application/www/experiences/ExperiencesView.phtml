@@ -1,0 +1,17 @@
+<section class="experiences" >
+    <h2>Mes Expériences Professionelles :</h2>
+    <div class="experiences-info">
+        <?php foreach ($experiences as $experience): ?>
+            <div class="experiences-block">
+                <div class="experiences-top">
+                    <h3><?= htmlentities($experience['title'])?></h3>
+                </div>
+                <div class="experiences-bottom">
+                    <h4><?= htmlentities($experience['society'])?> - <?= htmlentities($experience['city'])?></h4>
+                    <p><?= htmlentities($experience['content']) ?></p>
+                    <p>Période : <?= htmlentities($experience['periode']) ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</section>

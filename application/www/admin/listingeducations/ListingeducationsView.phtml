@@ -1,0 +1,130 @@
+<section>
+    <?php include WWW_PATH . '/admin/NavigationAdmin.phtml'; ?>
+    <!-- Tableau -->
+    <table class="generic-table">
+        <caption>Listing Formations</caption>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Titre</th>
+            <th>Nom de l'école</th>
+            <th>Ville</th>
+            <th>Période</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($listingEducations as $listingEducation): ?>
+            <tr id="educations_id<?= $listingEducation['id']?>">
+                <td><?= $listingEducation['id'] ?></td>
+                <td><?= htmlentities($listingEducation['title']) ?></td>
+                <td><?= htmlentities($listingEducation['nameSchool']) ?></td>
+                <td><?= htmlentities($listingEducation['city']) ?></td>
+                <td><?= htmlentities($listingEducation['periode']) ?></td>
+                <td>
+                    <a class="editEducation" href="<?= $requestUrl ?>/admin/listingEducations?action=edit&id=<?= $listingEducation['id']; ?>"><i class="fa fa-edit"></i></a>
+                    <a class="deleteEducation" href="<?= $requestUrl ?>/admin/listingEducations?action=delete&id=<?= $listingEducation['id']; ?>"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <!-- Fin du Tableau -->
+
+    <!-- Formulaire d'ajout -->
+    <form action="" class="generic-form" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <!-- Formulaire d'édition d'un article -->
+            <?php if (!empty($educationViews)): ?>
+                <legend>Formulaire d'édition d'une formation : </legend>
+                <aside class="error-message hidden">
+                    <h3>Il des erreurs dans votre formulaire</h3>
+                    <ul>
+                        <?php if (!empty($errorMessage)): ?>
+                            <li><?= $errorMessage ?></li>
+                        <?php endif ?>
+                    </ul>
+                </aside>
+                <?php foreach ($educationViews as $educationView): ?>
+                    <ul>
+                        <li>
+                            <input id="id" type="hidden" name="id" value="<?= $educationView['id']?>">
+                        </li>
+                        <li class="required">
+                            <label for="title">Titre</label>
+                            <input id="title" type="text" name="title" value="<?= $educationView['title']?>">
+                        </li>
+                        <li class="required">
+                            <label for="schoolName">Nom de l'école</label>
+                            <input id="schoolName" type="text" name="schoolName" value="<?= $educationView['nameSchool']?>">
+                        </li>
+                        <li class="required">
+                            <label for="city">Ville</label>
+                            <input id="city" type="text" name="city" value="<?= $educationView['city']?>">
+                        </li>
+                        <li class="required">
+                            <label for="periode">Période</label>
+                            <input id="periode" type="text" name="periode" value="<?= $educationView['periode']?>">
+                        </li>
+                        <li>
+                            <input class="button" type="submit" value="Update" title="Mettre à jour une formation" name="update_education">
+                            <button class="button button-primary">Retour</button>
+                        </li>
+                    </ul>
+                <?php endforeach; ?>
+                <!-- Fin du formulaire pour éditer un article  -->
+            <?php else: ?>
+            <legend>Formulaire d'ajout d'une formation : </legend>
+            <aside class="error-message hidden">
+                <h3>Il des erreurs dans votre formulaire</h3>
+                <ul>
+                    <?php if (!empty($errorMessage)): ?>
+                        <li><?= $errorMessage ?></li>
+                    <?php endif ?>
+                </ul>
+            </aside>
+            <ul>
+                <li class="required">
+                    <label for="title">Titre</label>
+                    <input id="title" type="text" name="title" value="">
+                </li>
+                <li class="required">
+                    <label for="schoolName">Nom de l'école</label>
+                    <input id="schoolName" type="text" name="schoolName" value="">
+                </li>
+                <li class="required">
+                    <label for="city">Ville</label>
+                    <input id="city" type="text" name="city">
+                </li>
+                <li class="required">
+                    <label for="periode">Période</label>
+                    <input id="periode" type="text" name="periode" value="">
+                </li>
+                <li>
+                    <button class="button button-primary">Ajouter</button>
+                </li>
+            </ul>
+            <?php endif ?>
+        </fieldset>
+    </form>
+    <!-- Fin du formulaire d'ajout -->
+</section>
+<script>
+    function onAjaxDeleteEducation(educations_id){
+        $('#educations_id'+educations_id).fadeOut();
+    }
+
+
+    function onClickDeleteEducation(event){
+        event.preventDefault();
+        var confirmation = confirm("Etes vous sur de vouloir supprimer cette formation?");
+        if (confirmation == true) {
+            $.get(this.href, "ajax", onAjaxDeleteEducation);
+        }
+    }
+
+    $(function()
+    {
+        $('.deleteEducation').click(onClickDeleteEducation);
+    });
+</script>

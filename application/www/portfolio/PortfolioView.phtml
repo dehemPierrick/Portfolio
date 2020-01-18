@@ -1,0 +1,19 @@
+<section class="projects" >
+    <h2>Les différents projets réalisés :</h2>
+    <div class="projects-info">
+        <?php foreach ($projects as $project): ?>
+            <div class="projects-block">
+                <div class="projects-top">
+                    <h3><?= htmlentities($project['title']) ?></h3>
+                </div>
+                <div class="projects-bottom">
+                    <img src="<?= $wwwUrl ?>/<?= $project['path'] ?>/<?= htmlentities($project['photo']) ?>" alt="Maquette <?= htmlentities($project['title']) ?>">
+                    <h4><?= htmlentities($project['content']) ?></h4>
+                    <p>Période : <?= htmlentities($project['periode']) ?></p>
+
+                </div>
+                <a href="<?= $requestUrl ?>/Portfoliosingle?id=<?= htmlentities($project['id']) ?>">Voir le projet</a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</section>

@@ -1,0 +1,141 @@
+<section>
+    <?php include WWW_PATH . '/admin/NavigationAdmin.phtml'; ?>
+    <!-- Tableau -->
+
+    <table class="generic-table">
+        <caption>Listing des Expériences</caption>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Titre</th>
+            <th>Société</th>
+            <th>Ville</th>
+            <th>Contenu</th>
+            <th>Période</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($listingExperiences as $listingExperience): ?>
+            <tr id="experiences_id<?= $listingExperience['id']?>">
+                <td><?= $listingExperience['id'] ?></td>
+                <td><?= htmlentities($listingExperience['title']) ?></td>
+                <td><?= htmlentities($listingExperience['society']) ?></td>
+                <td><?= htmlentities($listingExperience['city'] )?></td>
+                <td><?= htmlentities($listingExperience['content']) ?></td>
+                <td><?= htmlentities($listingExperience['periode'] )?></td>
+                <td>
+                    <a class="editExperience" href="<?= $requestUrl ?>/admin/listingExperiences?action=edit&id=<?= $listingExperience['id']; ?>"><i class="fa fa-edit"></i></a>
+                    <a class="deleteExperience" href="<?= $requestUrl ?>/admin/listingExperiences?action=delete&id=<?= $listingExperience['id']; ?>"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <!-- Fin du Tableau -->
+
+    <!-- Formulaire d'ajout -->
+    <form action="" class="generic-form" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <!-- Formulaire d'édition d'un article -->
+            <?php if (!empty($experienceViews)): ?>
+                <legend>Formulaire d'édition d'une expérience : </legend>
+                <aside class="error-message hidden">
+                    <h3>Il des erreurs dans votre formulaire</h3>
+                    <ul>
+                        <?php if (!empty($errorMessage)): ?>
+                            <li><?= $errorMessage ?></li>
+                        <?php endif ?>
+                    </ul>
+                </aside>
+                <?php foreach ($experienceViews as $experienceView): ?>
+                    <ul>
+                        <li>
+                            <input id="id" type="hidden" name="id" value="<?= $experienceView['id']?>">
+                        </li>
+                        <li class="required">
+                            <label for="title">Titre</label>
+                            <input id="title" type="text" name="title" value="<?= $experienceView['title'] ?>">
+                        </li>
+                        <li class="required">
+                            <label for="society">Société</label>
+                            <input id="society" type="text" name="society" value="<?= $experienceView['society'] ?>">
+                        </li>
+                        <li class="required">
+                            <label for="city">Ville</label>
+                            <input id="city" type="text" name="city" value="<?= $experienceView['city'] ?>">
+                        </li>
+                        <li class="required">
+                            <label for="content">Contenu</label>
+                            <textarea id="content" name="content" ><?= $experienceView['content'] ?></textarea>
+                        </li>
+                        <li class="required">
+                            <label for="content">Période</label>
+                            <input id="content" type="text" name="periode" value="<?= $experienceView['periode'] ?>">
+                        </li>
+                        <li>
+                            <input class="button" type="submit" value="Update" title="Mettre à jour une experience" name="update_experience">
+                            <button class="button button-primary">Retour</button>
+                        </li>
+                    </ul>
+                <?php endforeach; ?>
+                <!-- Fin du formulaire pour éditer un article  -->
+            <?php else: ?>
+            <legend>Formulaire d'ajout d'une expérience : </legend>
+            <aside class="error-message hidden">
+                <h3>Il des erreurs dans votre formulaire</h3>
+                <ul>
+                    <?php if (!empty($errorMessage)): ?>
+                        <li><?= $errorMessage ?></li>
+                    <?php endif ?>
+                </ul>
+            </aside>
+            <ul>
+                <li class="required">
+                    <label for="title">Titre</label>
+                    <input id="title" type="text" name="title" value="">
+                </li>
+                <li class="required">
+                    <label for="society">Société</label>
+                    <input id="society" type="text" name="society" value="">
+                </li>
+                <li class="required">
+                    <label for="city">Ville</label>
+                    <input id="city" type="text" name="city">
+                </li>
+                <li class="required">
+                    <label for="content">Contenu</label>
+                    <textarea id="content" name="content" ></textarea>
+                </li>
+                <li class="required">
+                    <label for="content">Période</label>
+                    <input id="content" type="text" name="periode" value="">
+                </li>
+                <li>
+                    <input class="button" type="submit" value="Ajouter" title="Ajouter une expérience" name="add_experience">
+                </li>
+            </ul>
+            <?php endif ?>
+        </fieldset>
+    </form>
+    <!-- Fin du formulaire d'ajout -->
+</section>
+<script>
+
+    function onAjaxDeleteExperience(experiences_id){
+        $('#experiences_id'+experiences_id).fadeOut();
+    }
+
+    function onClickDeleteExperience(event){
+        event.preventDefault();
+        var confirmation = confirm("Etes vous sur de vouloir supprimer cette expérience?");
+        if (confirmation == true) {
+            $.get(this.href, "ajax", onAjaxDeleteExperience);
+        }
+    }
+
+    $(function()
+    {
+        $('.deleteExperience').click(onClickDeleteExperience);
+    });
+</script>

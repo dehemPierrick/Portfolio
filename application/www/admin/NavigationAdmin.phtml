@@ -1,0 +1,15 @@
+<nav>
+    <ul class="link-list">
+        <?php if (($session->isLogged()) && ($session->isAdmin())): ?>
+            <li><a href="<?= $requestUrl ?>/admin/logout" class="button button-cancel" title="déconnexion">Déconnexion</a></li>
+            <li><a href="<?= $requestUrl ?>/admin/listingCompetences" class="button button-admin" title="ListingCompetences">
+                Listing des Compétences</a></li>
+            <li><a href="<?= $requestUrl ?>/admin/listingExperiences" class="button button-admin" title="ListingExperiences">
+                Listing des Expériences</a></li>
+            <li><a href="<?= $requestUrl ?>/admin/listingEducations" class="button button-admin" title="ListingEducations">
+                Listing Educations</a></li>
+            <li><a href="<?= $requestUrl ?>/admin/listingProjects" class="button button-admin" title="ListingProjects">
+                Listing des Projets</a></li>
+    </ul>
+        <?php endif ?>
+</nav>

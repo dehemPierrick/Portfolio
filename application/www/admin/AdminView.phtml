@@ -1,0 +1,32 @@
+<section class="login">
+    <div class="login-top">
+        <h2>Admin Login</h2>
+    </div>
+    <form action="" class="generic-form" method="post">
+        <fieldset>
+            <aside class="error-message hidden">
+                <h3>Il y a des erreurs dans votre formulaire</h3>
+                <ul>
+                    <?php if (!empty($errorMessage)): ?>
+                        <li><?= $errorMessage ?></li>
+                    <?php endif ?>
+                </ul>
+            </aside>
+            <ul class="login-bottom">
+                <li>
+                    <input id="email" type="text" name="email" placeholder="Email" value="" data-required>
+                </li>
+                <li>
+                    <input id="password" type="password" name="password" placeholder="Password"  value="" data-required >
+                </li>
+                <li>
+                    <button class="button button-envoyer">Envoyer</button>
+                </li>
+                <li>
+                    <a href="<?= $requestUrl ?>" class="button button-cancel" >Retourner à l'accueil</a>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+
+</section>

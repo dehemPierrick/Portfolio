@@ -1,0 +1,154 @@
+<section>
+    <?php include WWW_PATH . '/admin/NavigationAdmin.phtml'; ?>
+    <!-- Tableau -->
+    <table class="generic-table">
+        <caption>Listing des Projets</caption>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Titre</th>
+            <th>Contenu</th>
+            <th>Photos</th>
+            <th>Période</th>
+            <th>Chemin d'accès</th>
+            <th>Description</th>
+            <th>Langages</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($listingProjects as $listingProject): ?>
+            <tr id="projects_id<?= $listingProject['id']?>">
+                <td><?= $listingProject['id'] ?></td>
+                <td><?= htmlentities($listingProject['title']) ?></td>
+                <td><?= htmlentities($listingProject['content']) ?></td>
+                <td><?= htmlentities($listingProject['photo']) ?></td>
+                <td><?= htmlentities($listingProject['periode']) ?></td>
+                <td><?= htmlentities($listingProject['path']) ?></td>
+                <td><?= htmlentities($listingProject['description']) ?></td>
+                <td><?= htmlentities($listingProject['langages']) ?></td>
+                <td>
+                    <a class="editProject" href="<?= $requestUrl ?>/admin/listingProjects?action=edit&id=<?= $listingProject['id']; ?>"><i class="fa fa-edit"></i></a>
+                    <a class="deleteProject" href="<?= $requestUrl ?>/admin/listingProjects?action=delete&id=<?= $listingProject['id']; ?>"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <!-- Fin du Tableau -->
+
+    <!-- Formulaire d'ajout -->
+    <form action="" class="generic-form" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <!-- Formulaire d'édition d'un article -->
+            <?php if (!empty($projectViews)): ?>
+                <legend>Formulaire d'édition d'une compétence : </legend>
+                <aside class="error-message hidden">
+                    <h3>Il des erreurs dans votre formulaire</h3>
+                    <ul>
+                        <?php if (!empty($errorMessage)): ?>
+                            <li><?= $errorMessage ?></li>
+                        <?php endif ?>
+                    </ul>
+                </aside>
+                <?php foreach ($projectViews as $projectView): ?>
+                    <ul>
+                        <li>
+                            <input id="id" type="hidden" name="id" value="<?= $projectView['id']?>">
+                        </li>
+                        <li class="required">
+                            <label for="title">Titre</label>
+                            <input id="title" type="text" name="title" value="<?= $projectView['title'] ?>">
+                        </li>
+                        <li class="required">
+                            <label for="content">Contenu</label>
+                            <textarea id="content" name="content" ><?= $projectView['content'] ?></textarea>
+                        </li>
+                        <li class="required">
+                            <label for="periode">Période</label>
+                            <input id="periode" type="text" name="periode" value="<?= $projectView['periode']?>">
+                        </li>
+                        <li>
+                            <label for="photo">Photo</label>
+                            <input id="photo" type="file" name="photo">
+                        </li>
+                        <li class="required">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" ><?= $projectView['description'] ?></textarea>
+                        </li>
+                        <li class="required">
+                            <label for="langages">Langages</label>
+                            <input id="langages" type="text" name="langages" value="<?= $projectView['langages'] ?>">
+                        </li>
+                        <li>
+                            <input class="button" type="submit" value="Update" title="Mettre à jour un projet" name="update_project">
+                            <button class="button button-primary">Retour</button>
+                        </li>
+                    </ul>
+                <?php endforeach; ?>
+                <!-- Fin du formulaire pour éditer un article  -->
+            <?php else: ?>
+            <legend>Formulaire d'ajout d'un projet : </legend>
+            <aside class="error-message hidden">
+                <h3>Il des erreurs dans votre formulaire</h3>
+                <ul>
+                    <?php if (!empty($errorMessage)): ?>
+                        <li><?= $errorMessage ?></li>
+                    <?php endif ?>
+                </ul>
+            </aside>
+            <ul>
+                <li class="required">
+                    <label for="title">Titre</label>
+                    <input id="title" type="text" name="title" value="">
+                </li>
+                <li class="required">
+                    <label for="content">Contenu</label>
+                    <textarea id="content" name="content" ></textarea>
+                </li>
+                <li class="required">
+                    <label for="periode">Période</label>
+                    <input id="periode" type="text" name="periode" value="">
+                </li>
+                <li class="required">
+                    <label for="photo">Photos</label>
+                    <input id="photo" type="file" name="photo">
+                </li>
+                <li class="required">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" ></textarea>
+                </li>
+                <li class="required">
+                    <label for="langages">Langages</label>
+                    <input id="langages" type="text" name="langages" value="">
+                </li>
+                <li>
+                    <input class="button" type="submit" value="Ajouter" title="Ajouter un projet" name="add_project">
+                </li>
+            </ul>
+            <?php endif ?>
+        </fieldset>
+    </form>
+    <!-- Fin du formulaire d'ajout -->
+</section>
+
+<script>
+    function onAjaxDeleteProject(projects_id){
+        $('#projects_id'+projects_id).fadeOut();
+    }
+
+
+    function onClickDeleteProject(event){
+        event.preventDefault();
+
+        var confirmation = confirm("Etes vous sur de vouloir supprimer ce projet?");
+        if (confirmation == true) {
+            $.get(this.href, "ajax", onAjaxDeleteProject);
+        }
+    }
+
+    $(function()
+    {
+        $('.deleteProject').click(onClickDeleteProject);
+    });
+</script>

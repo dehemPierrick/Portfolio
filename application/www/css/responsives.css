@@ -1,0 +1,114 @@
+/* RESPONSIVE */
+
+/* Responsive Tablette */
+@media screen and (max-width: 992px) {
+	header nav a {
+		padding: 15px;
+	}
+
+	header nav{
+		flex-direction: column;
+	}
+
+	header nav img{
+		width: 40%;
+	}
+
+	#licence img {
+		width: 10%;
+	}
+
+	header nav img{
+		display: none;
+	}
+
+	.styled-input {
+		width: 48%;
+	}
+
+	.login{
+		margin : 0 auto;
+		width: 70%;
+	}
+
+	nav .link-list{
+		flex-direction: column;
+	}
+	.error404 h1{
+		 font-size:100px;
+	}
+
+}
+
+/* Fin Responsive Tablette */
+
+/* Responsive Mobile */
+@media screen and (max-width: 576px) {
+
+
+	header nav img{
+		display: none;
+	}
+
+	.contact-form {
+		margin: 2em 0 0 0;
+	}
+
+	.styled-input {
+		width: 100%;
+	}
+
+	.styled-input {
+		margin: 1em 0em;
+	}
+
+	.styled-input.input-top {
+		margin-top: 1em;
+	}
+
+	.social-info{
+		float:left;
+		width:40%;
+	}
+
+
+	.social-info-links{
+		float: right;
+	}
+
+	.button-contact{
+		text-align: center;
+	}
+
+	.competences-block {
+		width: 100%;
+	}
+
+	.experiences-block {
+		width: 100%;
+	}
+
+	.educations-block {
+		width: 100%;
+	}
+
+	.projects-block ,.projects-item{
+		width: 100%;
+	}
+
+	.projects-banner img{
+		width:100%;
+	}
+
+
+	.contact-form input[type="submit"] {
+		width: 100%;
+	}
+
+	.login{
+		margin : 0 auto;
+		width: 90%;
+	}
+}
+
+/* Fin Responsive Mobile */

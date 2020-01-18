@@ -1,0 +1,17 @@
+<section class="educations" >
+    <h2>Mes Diplômes et Formations : </h2>
+    <div class="educations-info">
+        <?php foreach ($educations as $education): ?>
+            <div class="educations-block">
+                <i class="fas fa-graduation-cap"></i>
+                <div class="educations-top">
+                    <h3><?= htmlentities($education['title'])?></h3>
+                </div>
+                <div class="educations-bottom">
+                    <h4><?= htmlentities($education['nameSchool'])?> - <?= htmlentities($education['city'])?></h4>
+                    <p>Période : <?= htmlentities($education['periode']) ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>    
+    </div>
+</section>

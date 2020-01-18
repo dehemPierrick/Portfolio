@@ -1,0 +1,49 @@
+
+<section class="contact">
+    <h2>Contact</h2>
+    <p>Pour toute demande de devis, merci de remplir le formulaire ci-dessous:</p>
+    <div class="container">
+        <div class="contact-form">
+            <form action="" class="" method="post">
+                <aside class="error-message hidden">
+            <h3>Il y a des erreurs dans votre formulaire</h3>
+            <ul>
+                <?php if (!empty($errorMessage)): ?>
+                    <li><?= $errorMessage ?></li>
+                <?php endif ?>
+            </ul>
+                </aside>
+                <div>
+                    <div class="styled-input input-top">
+                        <input type="text" name="FullName" id="fullname" data-required data-name="Nom Prénom" >
+                        <label for="fullname">Nom Prénom</label>
+                        <span id="errorFullname"></span>
+                    </div>
+                    <div class="styled-input input-top">
+                        <input type="text" name="Phone" id="phone" data-required data-name="téléphone" > 
+                        <label for="phone">Téléphone</label>
+                        <span id="errorTel"></span>
+                    </div>
+                    <div class="styled-input input-top">
+                        <input type="text" name="Email" id="email" data-required data-name="email" data-email > 
+                        <label for="email">Email</label>
+                        <span id="errorEmail"></span>
+                    </div> 
+                    <div class="styled-input input-top">
+                        <input type="text" name="Subject" id="sujet" data-required data-name="sujet"> 
+                        <label for="sujet">Sujet</label>
+                        <span id="errorSujet"></span>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="styled-input textarea-grid">
+                    <textarea name="Message" id="message" data-required data-name="message"></textarea>
+                    <label for="message">Message</label>
+                    <span id="errorMessage"></span>
+                </div>   
+                <input type="submit" value="Envoyer" id="btnContactSend" class="btnContactSend">
+            </form>
+        </div>
+    </div>
+</section>
+

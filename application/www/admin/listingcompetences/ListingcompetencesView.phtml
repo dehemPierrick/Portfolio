@@ -1,0 +1,122 @@
+<section>
+    <?php include WWW_PATH . '/admin/NavigationAdmin.phtml'; ?>
+    <!-- Tableau -->
+    <table class="generic-table">
+        <caption>Listing des Compétences</caption>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Titre</th>
+            <th>Photos</th>
+            <th>Chemin d'accès</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($listingCompetences as $listingCompetence): ?>
+            <tr id="competences_id<?= $listingCompetence['id']?>">
+                <td><?= $listingCompetence['id'] ?></td>
+                <td><?= htmlentities($listingCompetence['title']) ?></td>
+                <td><?= htmlentities($listingCompetence['photo']) ?></td>
+                <td><?= htmlentities($listingCompetence['path']) ?></td>
+                <td>
+                   <a class="editCompetence" href="<?= $requestUrl ?>/admin/listingCompetences?action=edit&id=<?= $listingCompetence['id']; ?>"><i class="fa fa-edit"></i></a>
+                   <a class="deleteCompetence" href="<?= $requestUrl ?>/admin/listingCompetences?action=delete&id=<?= $listingCompetence['id']; ?>"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <!-- Fin du Tableau -->
+
+    <!-- Formulaire d'ajout -->
+    <form action="" class="generic-form" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <!-- Formulaire d'édition d'un article -->
+            <?php if (!empty($competenceViews)): ?>
+            <legend>Formulaire d'édition d'une compétence : </legend>
+                <aside class="error-message hidden">
+                    <h3>Il des erreurs dans votre formulaire</h3>
+                    <ul>
+                        <?php if (!empty($errorMessage)): ?>
+                            <li><?= $errorMessage ?></li>
+                        <?php endif ?>
+                    </ul>
+                </aside>
+                <?php foreach ($competenceViews as $competenceView): ?>
+                    <ul>
+                        <li>
+                            <input id="id" type="hidden" name="id" value="<?= $competenceView['id']?>">
+                        </li>
+                        <li class="required">
+                            <label for="title">Titre</label>
+                            <input id="title" type="text" name="title" value="<?= $competenceView['title'] ?>">
+                        </li>
+                        <li>
+                            <label for="photo">Photo</label>
+                            <input id="photo" type="file" name="photo">
+                        </li>
+                        <li>
+                            <input class="button" type="submit" value="Update" title="Mettre à jour une compétence" name="update_competence">
+                            <button class="button button-primary">Retour</button>
+                         </li>
+                    </ul>
+                <?php endforeach; ?>
+                <!-- Fin du formulaire pour éditer un article  -->
+            <?php else: ?>
+            <legend>Formulaire d'ajout d'une compétence : </legend>
+
+            <aside class="error-message hidden">
+                <h3>Il des erreurs dans votre formulaire</h3>
+                <ul>
+                    <?php if (!empty($errorMessage)): ?>
+                        <li><?= $errorMessage ?></li>
+                    <?php endif ?>
+                </ul>
+            </aside>
+            <ul>
+
+                <li class="required">
+                    <label for="title">Titre</label>
+                    <input id="title" type="text" name="title" value="">
+                </li>
+                <li>
+                    <label for="photo">Photo</label>
+                    <input id="photo" type="file" name="photo">
+                </li>
+                <li>
+                    <input class="button" type="submit" value="Ajouter" title="Ajouter une compétence" name="add_competence">
+                </li>
+            </ul>
+            <?php endif ?>
+        </fieldset>
+    </form>
+    <!-- Fin du formulaire d'ajout -->
+</section>
+
+<script>
+
+
+    function onAjaxDeleteCompetence(competences_id){
+        $('#competences_id'+competences_id).fadeOut();
+    }
+
+
+    function onClickDeleteCompetence(event){
+        event.preventDefault();
+        var confirmation = confirm("Etes vous sur de vouloir supprimer cette compétence?");
+        if (confirmation == true) {
+            $.get(this.href, "ajax", onAjaxDeleteCompetence);
+        }
+    }
+
+
+
+    $(function()
+    {
+        // écouteur d'évènement sur le bouton suppression
+        $('.deleteCompetence').click(onClickDeleteCompetence);
+
+    });
+
+</script>
