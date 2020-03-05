@@ -110,19 +110,6 @@
     <!-- Fin du formulaire d'ajout -->
 </section>
 <script>
-    function onAjaxDeleteEducation(educations_id){
-        $('#educations_id'+educations_id).fadeOut();
-    }
-
-
-    function onClickDeleteEducation(event){
-        event.preventDefault();
-        var confirmation = confirm("Etes vous sur de vouloir supprimer cette formation?");
-        if (confirmation == true) {
-            $.get(this.href, "ajax", onAjaxDeleteEducation);
-        }
-    }
-
     $(function()
     {
         $('.deleteEducation').click(onClickDeleteEducation);

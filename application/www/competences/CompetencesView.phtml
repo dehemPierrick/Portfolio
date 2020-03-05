@@ -1,15 +1,15 @@
-<section class="competences" >
+<article class="competences" >
     <h2>Mes compétences :</h2>
     <div class="competences-info">
         <?php foreach ($competences as $competence): ?>
-            <div class="competences-block">
-                <div class="competences-top">
+            <section class="competences-block">
+                <aside class="competences-top">
                     <img src="<?= $wwwUrl ?>/<?= $competence['path'] ?>/<?= htmlentities($competence['photo']) ?>" alt="logo <?= htmlentities($competence['title']) ?>">
-                </div>
-                <div class="competences-bottom">
+                </aside>
+                <aside class="competences-bottom">
                     <p><?= htmlentities($competence['title']) ?></p>
-                </div>
-            </div>
+                </aside>
+            </section>
         <?php endforeach; ?>
     </div>
-</section>
+</article>

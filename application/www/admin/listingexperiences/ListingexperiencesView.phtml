@@ -121,19 +121,6 @@
     <!-- Fin du formulaire d'ajout -->
 </section>
 <script>
-
-    function onAjaxDeleteExperience(experiences_id){
-        $('#experiences_id'+experiences_id).fadeOut();
-    }
-
-    function onClickDeleteExperience(event){
-        event.preventDefault();
-        var confirmation = confirm("Etes vous sur de vouloir supprimer cette expérience?");
-        if (confirmation == true) {
-            $.get(this.href, "ajax", onAjaxDeleteExperience);
-        }
-    }
-
     $(function()
     {
         $('.deleteExperience').click(onClickDeleteExperience);

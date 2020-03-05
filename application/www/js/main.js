@@ -4,7 +4,7 @@
 // FONCTIONS                                                                           //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-
+// fonction pour checker l'adresse email dans le formulaire de contact
 function checkFormsEmail(email){
 
     var emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -21,6 +21,7 @@ function checkFormsEmail(email){
 
 }
 
+// fonction pour checker le format du numéro de téléphone dans le formulaire de contact
 function checkFormsTel(tel){
     //var phoneRegExp = /^\d{10}$/;
     var phoneRegExp = /^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$/;
@@ -36,6 +37,7 @@ function checkFormsTel(tel){
     }
 }
 
+// fonction pour checker qu'un sujet est préseant dans le formulaire de contact
 function checkFormsSujet(sujet){
 
     var errorSujet = document.getElementById('errorSujet');
@@ -51,6 +53,7 @@ function checkFormsSujet(sujet){
 
 }
 
+// fonction pour checker le nom et prénom dans le formulaire de contact
 function checkFormsFullName(fullname){
     var fullNameRegExp = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
   
@@ -70,6 +73,7 @@ function checkFormsFullName(fullname){
 
 }
 
+// fonction pour checker le message entré dans le formulaire de contact
 function checkFormsMessage(message){
     var errorMessage = document.getElementById('errorMessage');
 
@@ -84,6 +88,7 @@ function checkFormsMessage(message){
 
 }
 
+// fonction de validation de formulaire de contact
 function validationFormulaire(){
     var fullname = document.getElementById('fullname');
     var tel = document.getElementById('phone');
@@ -98,6 +103,66 @@ function validationFormulaire(){
 
 }
 
+
+
+// fonction de retour d'ajax pour masquer le projet supprimé
+function onAjaxDeleteProject(projects_id){
+        $('#projects_id'+projects_id).fadeOut();
+}
+
+// fonction pour supprimer le projet sélectionné en ajax
+function onClickDeleteProject(event){
+	event.preventDefault();
+
+	var confirmation = confirm("Etes vous sur de vouloir supprimer ce projet?");
+	if (confirmation == true) {
+		$.get(this.href, "ajax", onAjaxDeleteProject);
+	}
+}
+
+
+// fonction de retour d'ajax pour masquer l'expérience supprimée
+function onAjaxDeleteExperience(experiences_id){
+        $('#experiences_id'+experiences_id).fadeOut();
+}
+
+// fonction pour supprimer l'expérience sélectionnée en ajax
+function onClickDeleteExperience(event){
+	event.preventDefault();
+	var confirmation = confirm("Etes vous sur de vouloir supprimer cette expérience?");
+	if (confirmation == true) {
+		$.get(this.href, "ajax", onAjaxDeleteExperience);
+	}
+}
+
+// fonction de retour d'ajax pour masquer l'education supprimé
+function onAjaxDeleteEducation(educations_id){
+        $('#educations_id'+educations_id).fadeOut();
+}
+
+// fonction pour supprimer l'education sélectionné en ajax
+function onClickDeleteEducation(event){
+	event.preventDefault();
+	var confirmation = confirm("Etes vous sur de vouloir supprimer cette formation?");
+	if (confirmation == true) {
+		$.get(this.href, "ajax", onAjaxDeleteEducation);
+	}
+}
+
+// fonction de retour d'ajax pour masquer la compétence supprimée
+function onAjaxDeleteCompetence(competences_id){
+        $('#competences_id'+competences_id).fadeOut();
+}
+
+// fonction pour supprimer la compétence sélectionnée en ajax
+function onClickDeleteCompetence(event){
+	event.preventDefault();
+	var confirmation = confirm("Etes vous sur de vouloir supprimer cette compétence?");
+	if (confirmation == true) {
+		$.get(this.href, "ajax", onAjaxDeleteCompetence);
+	}
+}
+	
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // CODE PRINCIPAL                                                                      //
@@ -120,6 +185,5 @@ $(function () {
     var validForm = document.getElementById('btnContactSend');
     validForm.addEventListener('click', validationFormulaire);
 
-
-
+	
 });

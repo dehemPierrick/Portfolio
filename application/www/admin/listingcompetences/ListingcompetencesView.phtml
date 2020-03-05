@@ -93,30 +93,9 @@
     </form>
     <!-- Fin du formulaire d'ajout -->
 </section>
-
 <script>
-
-
-    function onAjaxDeleteCompetence(competences_id){
-        $('#competences_id'+competences_id).fadeOut();
-    }
-
-
-    function onClickDeleteCompetence(event){
-        event.preventDefault();
-        var confirmation = confirm("Etes vous sur de vouloir supprimer cette compétence?");
-        if (confirmation == true) {
-            $.get(this.href, "ajax", onAjaxDeleteCompetence);
-        }
-    }
-
-
-
     $(function()
     {
-        // écouteur d'évènement sur le bouton suppression
         $('.deleteCompetence').click(onClickDeleteCompetence);
-
     });
-
 </script>

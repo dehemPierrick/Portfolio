@@ -1,29 +1,24 @@
-<section class="projects-single" >
+<article class="projects-single" >
     <div class="projects-info-single">
         <?php foreach ($projects as $project): ?>
-            <div class="projects-item">
-                <div class="projects-banner">
+            <section class="projects-item">
+                <aside class="projects-banner">
                     <img src="<?= $wwwUrl ?>/<?= $project['path'] ?>/<?= htmlentities($project['photo']) ?>" alt="Maquette <?= htmlentities($project['title']) ?>">
-                </div>
-                <div class="projects-banner-info">
+                </aside>
+                <aside class="projects-banner-info">
                     <h2><?= htmlentities($project['title']) ?></h2>
-                    <br>
-
                     <h3>Description du projet : </h3>
                     <p><?= htmlentities($project['description']) ?></p>
-                    <br>
                     <h4>Languages utilisés : </h4>
                     <p><?= htmlentities($project['langages']) ?></p>
-                    <br>
                     <p><?= htmlentities($project['content']) ?></p>
                     <p>Période : <?= htmlentities($project['periode']) ?></p>
 
-                </div>
-                <div class="projects-single-bottom">
+                </aside>
+                <aside class="projects-single-bottom">
                     <a href="<?= $requestUrl ?>/portfolio">Retour Portfolio</a>
-                </div>
-            </div>
+                </aside>
+            </section>
         <?php endforeach; ?>
-
     </div>
-</section>
+</article>

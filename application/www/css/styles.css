@@ -374,7 +374,7 @@ footer {
 
 
 .projects-banner img {
-    width: 50%;
+    width: 60%;
     float: left;
     padding:10px;
 }
@@ -392,9 +392,12 @@ footer {
 }
 
 .projects-banner-info  h2,h3, h4{
-    margin-top: 10px;
+	margin-top: 10px;
     font-size: 25px;
     text-transform: uppercase;
+}
+.projects-banner-info p {
+	margin-bottom: 30px;
 }
 
 

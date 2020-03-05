@@ -131,24 +131,10 @@
     </form>
     <!-- Fin du formulaire d'ajout -->
 </section>
-
 <script>
-    function onAjaxDeleteProject(projects_id){
-        $('#projects_id'+projects_id).fadeOut();
-    }
-
-
-    function onClickDeleteProject(event){
-        event.preventDefault();
-
-        var confirmation = confirm("Etes vous sur de vouloir supprimer ce projet?");
-        if (confirmation == true) {
-            $.get(this.href, "ajax", onAjaxDeleteProject);
-        }
-    }
-
-    $(function()
+	$(function()
     {
         $('.deleteProject').click(onClickDeleteProject);
     });
 </script>
+
