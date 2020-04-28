@@ -90,16 +90,15 @@ function checkFormsMessage(message){
 
 // fonction de validation de formulaire de contact
 function validationFormulaire(){
-    var fullname = document.getElementById('fullname');
-    var tel = document.getElementById('phone');
-    var sujet = document.getElementById('sujet');
-    var email = document.getElementById('email');
-    var message = document.getElementById('message');
+    
     checkFormsEmail(email);
     checkFormsTel(tel);
     checkFormsSujet(sujet);
     checkFormsFullName(fullname);
     checkFormsMessage(message);
+
+   
+   
 
 }
 
@@ -164,6 +163,7 @@ function onClickDeleteCompetence(event){
 }
 	
 
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // CODE PRINCIPAL                                                                      //
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -182,8 +182,11 @@ $(function () {
         notice.delay(2345).fadeOut(3210);
     }
 
-    var validForm = document.getElementById('btnContactSend');
+   var validForm = document.getElementById('btnContactSend');
     validForm.addEventListener('click', validationFormulaire);
 
-	
+	$('.deleteCompetence').click(onClickDeleteCompetence);
+    $('.deleteEducation').click(onClickDeleteEducation);
+    $('.deleteExperience').click(onClickDeleteExperience);
+    $('.deleteProject').click(onClickDeleteProject);
 });
